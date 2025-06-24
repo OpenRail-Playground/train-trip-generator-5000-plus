@@ -1,22 +1,17 @@
-import {Component} from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
-import {DBBrand, DBHeader,} from '@db-ux/ngx-core-components';
+import { DBBrand, DBHeader } from '@db-ux/ngx-core-components';
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    DBHeader,
-    DBBrand,
-    RouterOutlet,
-  ],
-  standalone: true,
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+	selector: 'app-root',
+	imports: [DBHeader, DBBrand, RouterOutlet],
+	standalone: true,
+	templateUrl: './app.html',
+	styleUrl: './app.css',
 })
 export class App {
-  constructor() {}
+	constructor() {}
 
-  protected title = 'Train Trip Generator 5000+';
-
+	protected title = 'Train Trip Generator 5000+';
 }

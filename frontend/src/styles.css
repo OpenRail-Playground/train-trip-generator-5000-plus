@@ -2,37 +2,39 @@
 /* @import "@db-ux/db-theme/build/styles/rollup.css"; */
 
 /* You can add global styles to this file, and also import other style files */
-html, body {
-  inline-size: 100vw;
-  block-size: 100vh;
+html,
+body {
+	inline-size: 100vw;
+	block-size: 100vh;
 }
 .quickfinder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-  /* vertical align to the middle */
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px;
+	/* vertical align to the middle */
+	justify-content: center;
 
-  min-height: calc(100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px);
+	min-height: calc(
+		100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px
+	);
 
-  fieldset {
-      padding: 0;
+	fieldset {
+		padding: 0;
 
-      display: flex;
-      align-items: flex-end;
-      gap: var(--db-spacing-fixed-2xs);
+		display: flex;
+		align-items: flex-end;
+		gap: var(--db-spacing-fixed-2xs);
 
-      & ~ db-input .db-input,
-      & ~ db-button .db-button {
-        margin-inline: var(--db-spacing-fixed-2xs);
-        max-inline-size: calc(100% - var(--db-spacing-fixed-2xs) * 2);
+		& ~ db-input .db-input,
+		& ~ db-button .db-button {
+			margin-inline: var(--db-spacing-fixed-2xs);
+			max-inline-size: calc(100% - var(--db-spacing-fixed-2xs) * 2);
 
-        margin-block: var(--db-spacing-fixed-2xs);
-      }
-  }
+			margin-block: var(--db-spacing-fixed-2xs);
+		}
+	}
 }
 
 .your-trip {
-
 }
