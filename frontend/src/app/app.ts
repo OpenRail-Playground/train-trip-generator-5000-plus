@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-import {DBBrand, DBHeader} from '@db-ux/ngx-core-components';
+import { DBBrand, DBHeader } from '@db-ux/ngx-core-components';
 
 @Component({
 	selector: 'app-root',

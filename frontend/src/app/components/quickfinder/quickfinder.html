@@ -1,12 +1,14 @@
 <db-card>
-	<form method="post" action="/your-trip" (ngSubmit)="onSubmit()" class="quickfinder">
+	<form
+		method="post"
+		action="/your-trip"
+		(ngSubmit)="onSubmit()"
+		class="quickfinder"
+	>
 		<fieldset>
 			<legend></legend>
 			<db-input label="From" variant="floating"></db-input>
-			<db-button
-				icon="arrows_horizontal"
-				noText="true"
-				variant="ghost"
+			<db-button icon="arrows_horizontal" noText="true" variant="ghost"
 				>Switch from and to stations</db-button
 			>
 			<db-input label="To" variant="floating"></db-input>
@@ -16,8 +18,6 @@
 			label="Maximal Travel Time/day (h)"
 			variant="floating"
 		></db-input>
-		<db-button type="submit" variant="brand" width="full"
-			>Search</db-button
-		>
+		<db-button type="submit" variant="brand" width="full">Search</db-button>
 	</form>
 </db-card>
