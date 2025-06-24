@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-root',
+	selector: 'app-quick-finder',
 	imports: [DBButton, DBInput, DBCard, FormsModule],
 	standalone: true,
 	templateUrl: './quickfinder.html',
