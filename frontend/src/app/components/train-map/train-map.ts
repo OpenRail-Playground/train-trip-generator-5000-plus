@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
+import {RoutesService} from '../../services/routes.service';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-train-map',
@@ -7,8 +9,10 @@ import * as L from 'leaflet';
 	styleUrls: ['./train-map.css'],
 })
 export class TrainMapComponent implements AfterViewInit {
-	@ViewChild('map', { static: true }) mapElement!: ElementRef<HTMLDivElement>;
+
+ 	@ViewChild('map', { static: true }) mapElement!: ElementRef<HTMLDivElement>;
 	private map!: L.Map;
+
 
 	ngAfterViewInit(): void {
 		this.initMap();

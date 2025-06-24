@@ -2,9 +2,9 @@
 	<div [formGroup]="form" class="quickfinder">
 		<fieldset>
 			<legend></legend>
-			<db-input formControlName="from" label="From" variant="floating" [dataList]="fromResult"></db-input>
+			<db-input formControlName="from" label="From" variant="floating" [dataList]="fromResult"(valueChange)="changeDeparture($event)"></db-input>
 			<db-button icon="arrows_horizontal" noText="true" variant="ghost">Switch from and to stations</db-button>
-			<db-input formControlName="to" label="To" variant="floating" [dataList]="toResult"></db-input>
+			<db-input formControlName="to" label="To" variant="floating" [dataList]="toResult" (valueChange)="changeDestination($event)"></db-input>
 		</fieldset>
 		<db-input
 			type="number"

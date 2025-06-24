@@ -151,7 +151,7 @@ public class GraphSearchService {
 		StopEntity arrivalStop = stopRepository.findById(arrivalStopTime.getStop().getParentStationId()).orElseThrow();
 		return new TripResponsePart(departureStop.getLatitude(), departureStop.getLongitude(),
 				arrivalStop.getLatitude(), arrivalStop.getLongitude(), departureStop.getName(), arrivalStop.getName(),
-				departure.getTime(), arrival.getTime(), trip.getTripShortName());
+				departure.getTime(), arrival.getTime(), trip.getRoute().getRouteShortName());
 	}
 
 	private LinkedList<Node> getNodeList(Map<Node, Node> parentMap, Node n) {
