@@ -5,24 +5,25 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ParsingService<T, K> {
-
-//    final CsvMapper<T, K> csvMapper;
+public class ParsingService {
 
 
-    final public Set<T> parseCSV(InputStream stream , Class<K> clazz) throws IOException {
+    final public <K> List<K> parseCSV(String fileName, Class<K> clazz) throws IOException {
+
+        val stream = new FileInputStream(ResourceUtils.getFile("classpath:data/" + fileName));
 
         try (Reader reader = new BufferedReader(new InputStreamReader(stream))) {
             // creating the strategy object
@@ -38,11 +39,7 @@ public class ParsingService<T, K> {
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
             // parse the data into the Objects with type T
-//            return csvToBean.parse()
-//                    .stream()
-//                    .map(csvMapper::mapTo)
-//                    .collect(Collectors.toSet());
-            return null;
+            return csvToBean.parse();
         }
     }
 

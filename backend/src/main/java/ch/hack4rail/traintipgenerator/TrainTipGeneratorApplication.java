@@ -10,4 +10,6 @@ public class TrainTipGeneratorApplication {
         SpringApplication.run(TrainTipGeneratorApplication.class, args);
     }
 
+
+
 }
