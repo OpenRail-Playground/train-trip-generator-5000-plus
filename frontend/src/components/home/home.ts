@@ -25,9 +25,6 @@ export class HomeComponent {
   private router = inject(Router)
 
   public onSubmit() {
-    // Do your form processing here
-    console.log('Form submitted!');
-
     // Navigate to another page
     this.router.navigate(['/your-trip']);
   }
