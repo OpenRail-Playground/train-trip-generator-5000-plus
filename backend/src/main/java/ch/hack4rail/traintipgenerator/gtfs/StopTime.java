@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public final class StopTimes {
+public final class StopTime {
 
     @CsvBindByName(column = "stop_id")
     private String stopId;
