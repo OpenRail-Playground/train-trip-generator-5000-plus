@@ -1,6 +1,6 @@
 package main.java.ch.hack4rail.traintipgenerator.request;
 
-public record StopRequest(
+public record AutocompleteRequest(
         String stationName
 ) {
 }
