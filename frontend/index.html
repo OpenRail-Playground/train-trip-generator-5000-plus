@@ -8,7 +8,16 @@
     <title>Train Trip Generator 5000+</title>
   </head>
   <body>
-    <div id="app"></div>
+    <form method="post" action="#">
+      <fieldset>
+        <legend>Where do you want to go?</legend>
+
+        <db-input label="From"></db-input>
+        <db-input label="To"></db-input>
+        <db-input type="number" label="Maximal Travel Time/day"></db-input>
+      </fieldset>
+      <db-button type="submit" variant="brand">Search</db-button>
+    </form>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
