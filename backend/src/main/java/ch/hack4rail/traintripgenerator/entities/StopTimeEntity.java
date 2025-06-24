@@ -24,7 +24,7 @@ public final class StopTimeEntity {
     private StopTimeId id;
 
     @Column
-    private String stopId;
+    private long stopId;
 
     @Column
     private LocalTime departureTime;

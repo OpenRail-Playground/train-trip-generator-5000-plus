@@ -18,10 +18,10 @@ import lombok.Setter;
 public final class RouteEntity {
 
     @Id
-    private String id;
+    private long id;
 
     @Column
-    private String agencyId;
+    private long agencyId;
 
     @Column
     private String routeShortName;
@@ -33,7 +33,7 @@ public final class RouteEntity {
     private String routeDesc;
 
     @Column
-    private String routeType;
+    private int routeType;
 
 
 }

@@ -18,13 +18,17 @@ import lombok.Setter;
 public final class TripEntity {
 
     @Id
-    private String id;
+    private long id;
+
     @Column
-    private String routeId;
+    private long routeId;
+
     @Column
-    private String serviceId;
+    private long serviceId;
+
     @Column
     private String tripShortName;
+
     @Column
-    private String directionId;
+    private long directionId;
 }

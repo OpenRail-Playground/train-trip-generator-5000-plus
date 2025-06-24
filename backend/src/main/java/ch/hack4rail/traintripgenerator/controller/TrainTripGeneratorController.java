@@ -32,7 +32,7 @@ public class TrainTripGeneratorController {
 
         return new AutocompletionResponse(
                 foundStops.stream().map(
-                        stop -> new AutocompletionResponsePart(Long.parseLong(stop.getId()), stop.getName())
+                        stop -> new AutocompletionResponsePart(stop.getId(), stop.getName())
                 ).collect(Collectors.toList())
         );
     }
