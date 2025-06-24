@@ -6,10 +6,13 @@ import {RoutesService} from '../../services/routes.service';
 import {ActivatedRoute} from '@angular/router';
 import {map, switchMap} from 'rxjs';
 import {TripRequest} from '../../models/trip-request';
+import {AutocompletionResponse} from '../../models/stations-autocomplete-response';
+import {TripResponse} from '../../models/trip-response';
+import {DatePipe, NgIf} from '@angular/common';
 
 @Component({
 	selector: 'app-your-trip-page',
-	imports: [DBIcon, DBCard, DBButton, TrainMapComponent],
+	imports: [DBIcon, DBCard, DBButton, TrainMapComponent, DatePipe, NgIf],
 	standalone: true,
 	templateUrl: './your-trip.html',
 	styleUrl: './your-trip.css',
@@ -18,6 +21,7 @@ export class YourTripComponent {
 
 	private routesService = inject(RoutesService);
 	private activatedRoute = inject(ActivatedRoute);
+	result: TripResponse | undefined;
 
 
 	ngOnInit() {
@@ -33,7 +37,7 @@ export class YourTripComponent {
 				switchMap(e => this.routesService.getTrip(e))
 			)
 			.subscribe(e => {
-				console.log(e)
+				this.result = e;
 			})
 
 

@@ -30,7 +30,7 @@ export class QuickFinderComponent {
 	}>({
 		from: this.formBuilder.nonNullable.control<string>("", [Validators.required, Validators.minLength(1)]),
 		to: this.formBuilder.nonNullable.control<string>("", [Validators.required, Validators.minLength(1)]),
-		maxTravelTime: this.formBuilder.nonNullable.control<number>(1, [Validators.required, Validators.min(0)])
+		maxTravelTime: this.formBuilder.nonNullable.control<number>(12, [Validators.required, Validators.min(0)])
 	})
 	fromResult: KeyValue[] = []
 	toResult: KeyValue[] = []
