@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @Entity(name = "stops")
-public class StopEntity {
+public final class StopEntity {
 
     @Id
     private String id;

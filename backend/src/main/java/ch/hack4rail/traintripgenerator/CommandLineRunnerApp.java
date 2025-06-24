@@ -5,6 +5,7 @@ import ch.hack4rail.traintripgenerator.services.mapping.StopTimeEntityMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import ch.hack4rail.traintripgenerator.gtfs.Route;
@@ -21,6 +22,7 @@ import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor
+@Profile("import")
 public class CommandLineRunnerApp implements CommandLineRunner {
 
     private final ParsingService parsingService;
