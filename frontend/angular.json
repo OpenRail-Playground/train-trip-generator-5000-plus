@@ -22,7 +22,10 @@
 								"input": "public"
 							}
 						],
-						"styles": ["src/styles.css", "node_modules/leaflet/dist/leaflet.css"]
+						"styles": [
+							"src/styles.css",
+							"node_modules/leaflet/dist/leaflet.css"
+						]
 					},
 					"configurations": {
 						"production": {
@@ -75,7 +78,10 @@
 								"input": "public"
 							}
 						],
-						"styles": ["src/styles.css", "node_modules/leaflet/dist/leaflet.css"]
+						"styles": [
+							"src/styles.css",
+							"node_modules/leaflet/dist/leaflet.css"
+						]
 					}
 				}
 			}
