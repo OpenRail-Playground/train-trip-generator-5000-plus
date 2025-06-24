@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { DBIcon } from '@db-ux/ngx-core-components';
+import { DBIcon, DBCard } from '@db-ux/ngx-core-components';
 
 @Component({
 	selector: 'app-root',
-	imports: [DBIcon],
+	imports: [DBIcon, DBCard],
 	standalone: true,
 	templateUrl: './your-trip.html',
 	styleUrl: './your-trip.css',

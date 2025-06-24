@@ -1,0 +1,15 @@
+.your-trip {
+	.travel {
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
+
+		strong {
+			display: block;
+			font-weight: 900;
+			font-size: var(--db-headline-font-size-md);
+		}
+	}
+
+	.stop {
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
+	}
+}
