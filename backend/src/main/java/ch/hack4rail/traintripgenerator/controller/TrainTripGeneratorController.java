@@ -3,7 +3,7 @@ package ch.hack4rail.traintripgenerator.controller;
 import ch.hack4rail.traintipgenerator.response.AutocompletionResponse;
 import ch.hack4rail.traintipgenerator.response.AutocompletionResponsePart;
 import ch.hack4rail.traintipgenerator.response.TripResponse;
-import ch.hack4rail.traintripgenerator.gtfs.Trip;
+import ch.hack4rail.traintipgenerator.response.TripResponsePart;
 import ch.hack4rail.traintripgenerator.request.AutocompletionRequest;
 import ch.hack4rail.traintripgenerator.request.TripRequest;
 import ch.hack4rail.traintripgenerator.services.AutocompletionService;
@@ -39,7 +39,10 @@ public class TrainTripGeneratorController {
 
     @PostMapping("/trip")
     public TripResponse getTrip(@RequestBody TripRequest request) {
-        return new TripResponse(List.of(new Trip()));
+
+        return new TripResponse(
+                List.of(new TripResponsePart(123L, "abc"))
+        );
     }
 
 }
