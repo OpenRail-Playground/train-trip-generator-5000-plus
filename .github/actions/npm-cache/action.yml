@@ -2,14 +2,18 @@
 name: "NPM Cache Action"
 description: "Initialize NPM Cache"
 inputs:
+  projectPath:
+    description: "Path to the project directory"
+    required: false
+    default: "frontend"
   nodeModulesPath:
     description: "Path for node_modules"
     required: false
-    default: "**/node_modules"
+    default: "frontend/node_modules"
   packageLockPath:
     description: "Path for package-lock.json"
     required: false
-    default: "**/package-lock.json"
+    default: "frontend/package-lock.json"
   nodeVersion:
     description: "Node version"
     required: false
@@ -48,5 +52,6 @@ runs:
     - name: ⏬ NPM ci
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
+      working-directory: ${{ inputs.projectPath }}
       run: |
         npm ci
