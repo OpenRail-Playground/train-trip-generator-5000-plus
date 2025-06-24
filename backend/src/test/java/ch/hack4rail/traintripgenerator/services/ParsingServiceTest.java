@@ -1,6 +1,7 @@
 package ch.hack4rail.traintripgenerator.services;
 
 
+import ch.hack4rail.traintripgenerator.gtfs.Agency;
 import ch.hack4rail.traintripgenerator.gtfs.Route;
 import ch.hack4rail.traintripgenerator.gtfs.Stop;
 import ch.hack4rail.traintripgenerator.gtfs.StopTime;
@@ -33,6 +34,12 @@ public class ParsingServiceTest {
     @Test
     public void testStopTimesParsing() throws IOException {
         var parsed = parsingService.parseCSV("stop_times.txt", StopTime.class);
+        Assertions.assertNotNull(parsed);
+    }
+
+    @Test
+    public void testAgenciesParsing() throws IOException {
+        var parsed = parsingService.parseCSV("agency.txt", Agency.class);
         Assertions.assertNotNull(parsed);
     }
 
