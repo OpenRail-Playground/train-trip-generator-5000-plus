@@ -15,12 +15,12 @@ import lombok.Setter;
 @Setter
 @Builder
 @Entity(name = "trips")
-public class TripEntity {
+public final class TripEntity {
 
+    @Id
+    private String id;
     @Column
     private String routeId;
-    @Id
-    private String tripId;
     @Column
     private String serviceId;
     @Column

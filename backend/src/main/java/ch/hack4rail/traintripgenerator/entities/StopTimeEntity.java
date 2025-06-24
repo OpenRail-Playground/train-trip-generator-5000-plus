@@ -18,7 +18,7 @@ import java.time.LocalTime;
 @Setter
 @Builder
 @Entity(name = "stop_times")
-public class StopTimeEntity {
+public final class StopTimeEntity {
 
     @EmbeddedId
     private StopTimeId id;
