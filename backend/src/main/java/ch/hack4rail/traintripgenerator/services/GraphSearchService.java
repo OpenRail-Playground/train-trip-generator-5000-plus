@@ -50,16 +50,18 @@ public class GraphSearchService {
 
 		while (!queue.isEmpty()) {
 			Node n = queue.poll();
-			System.out.println(n);
 			if (n.isArrival() && endStopParentId.equals(n.getParentStopId())) {
 				return getTripResponse(parentMap, n);
 			}
 			if (n.isArrival()) {
-				if (!visitedStations.add(n.getParentStopId())) {
+				if (!visitedStations.add(n.getParentStopId()) && !(n instanceof StartingNode)) {
 					continue;
 				}
 				List<Node> nextNodes = getNextNodesForArrival(n, minimumConnectionTime, startOfTravelDay,
 						endOfTravelDay);
+				if (nextNodes.isEmpty()) {
+					visitedStations.remove(n.getParentStopId());
+				}
 				nextNodes.forEach(nextNode -> {
 					queue.add(nextNode);
 					parentMap.put(nextNode, n);
@@ -108,7 +110,7 @@ public class GraphSearchService {
 					|| stopTime.getDepartureTime().isBefore(n.getTime().toLocalTime().plus(minimumConnectionTime))) {
 				continue;
 			}
-			if (stopTime.getDepartureTime().isAfter(endOfTravelDay)) {
+			if (!stopTime.getDepartureTime().isBefore(endOfTravelDay)) {
 				continue;
 			}
 			nextNodes.add(new Node(false, stopTime, n.getTime().toLocalDate()));
@@ -195,7 +197,8 @@ public class GraphSearchService {
 
 		@Override
 		public String toString() {
-			return (arrival ? "arrival: " : "departure: ") + stop.getStop().getName() + " at " + dateTime.toString();
+			return (arrival ? "arrival: " : "departure: ") + stop.getStop().getName() + "(" + stop.getStop().getId()
+					+ ") at " + dateTime.toString();
 		}
 
 		@Override
@@ -250,7 +253,8 @@ public class GraphSearchService {
 
 		@Override
 		public String toString() {
-			return "StartNode: " + stopRepository.findById(stopParentId).get().getName() + " at " + time;
+			return "StartNode: " + stopRepository.findById(stopParentId).get().getName() + "(" + stopParentId + ") at "
+					+ time;
 		}
 
 		@Override
