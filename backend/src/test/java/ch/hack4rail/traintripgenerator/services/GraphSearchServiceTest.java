@@ -41,7 +41,7 @@ public class GraphSearchServiceTest {
 
 	@Test
 	public void testMultiDayTrip() {
-		Optional<TripResponse> optimalRoute = search.getOptimalRoute(1L, 2L, Duration.ofHours(6), LocalTime.of(7, 0),
+		Optional<TripResponse> optimalRoute = search.getOptimalRoute(stopRepo.findIdByName("Koln"), stopRepo.findIdByName("Dresden"), Duration.ofHours(6), LocalTime.of(7, 0),
 				Duration.ofMinutes(6));
 
 		assertTrue(optimalRoute.isPresent());

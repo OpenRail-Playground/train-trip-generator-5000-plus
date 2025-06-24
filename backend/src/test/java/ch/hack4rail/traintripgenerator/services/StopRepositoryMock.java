@@ -22,16 +22,25 @@ public class StopRepositoryMock implements StopRepository {
 
 	public StopEntity addParent(String stopName) {
 		return stops.stream().filter(stop -> stop.getName().equals(stopName)) //
-			.filter(stop -> stop.getParentStationId() == null) //
-			.findFirst().orElseGet(() -> StopEntity.builder().id((long) stopId++).name(stopName).build());
+				.filter(stop -> stop.getParentStationId() == null) //
+				.findFirst().orElseGet(() -> {
+					StopEntity stopEntity = StopEntity.builder().id((long) stopId++).name(stopName).build();
+					stops.add(stopEntity);
+					return stopEntity;
+				});
 	}
-	
+
 	public StopEntity addChild(String stopName, Long parentId) {
 		return stops.stream().filter(stop -> stop.getName().equals(stopName)) //
-			.filter(stop -> stop.getParentStationId() != null) //
-			.findFirst().orElseGet(() -> StopEntity.builder().id((long) stopId++).parentStationId(parentId).name(stopName).build());
+				.filter(stop -> stop.getParentStationId() != null) //
+				.findFirst().orElseGet(() -> {
+					StopEntity stopEntity = StopEntity.builder().id((long) stopId++).parentStationId(parentId)
+							.name(stopName).build();
+					stops.add(stopEntity);
+					return stopEntity;
+				});
 	}
-	
+
 	public void addStop(StopEntity... stops) {
 		this.stops.addAll(Arrays.asList(stops));
 	}
@@ -39,7 +48,7 @@ public class StopRepositoryMock implements StopRepository {
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -57,19 +66,19 @@ public class StopRepositoryMock implements StopRepository {
 	@Override
 	public void deleteAllInBatch(Iterable<StopEntity> entities) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAllByIdInBatch(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAllInBatch() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -146,31 +155,31 @@ public class StopRepositoryMock implements StopRepository {
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(StopEntity entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAllById(Iterable<? extends Long> ids) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAll(Iterable<? extends StopEntity> entities) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -221,5 +230,8 @@ public class StopRepositoryMock implements StopRepository {
 		return null;
 	}
 
-	
+	public Long findIdByName(String name) {
+		return stops.stream().filter(stop -> stop.getName().equals(name)).filter(stop -> stop.getParentStationId() == null).findFirst().map(StopEntity::getId).orElseThrow();
+	}
+
 }
