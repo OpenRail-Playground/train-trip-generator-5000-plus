@@ -1,9 +1,11 @@
 package ch.hack4rail.traintipgenerator;
 
+import ch.hack4rail.traintipgenerator.entities.StopEntity;
 import ch.hack4rail.traintipgenerator.gtfs.Route;
 import ch.hack4rail.traintipgenerator.gtfs.Stop;
 import ch.hack4rail.traintipgenerator.gtfs.StopTime;
 import ch.hack4rail.traintipgenerator.gtfs.Trip;
+import ch.hack4rail.traintipgenerator.repositories.StopRepository;
 import ch.hack4rail.traintipgenerator.services.ParsingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

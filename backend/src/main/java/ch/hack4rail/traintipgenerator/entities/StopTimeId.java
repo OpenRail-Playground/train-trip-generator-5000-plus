@@ -1,5 +1,6 @@
 package ch.hack4rail.traintipgenerator.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +15,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class StopTimeId implements Serializable {
-    private String accountNumber;
+    private String tripId;
 
-    private String accountType;
+    private String stopSequence;
 
 }

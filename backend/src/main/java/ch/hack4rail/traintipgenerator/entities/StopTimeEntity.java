@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,11 +24,11 @@ public class StopTimeEntity {
     private StopTimeId id;
 
     @Column
-    private String tripId;
+    private String stopId;
 
     @Column
-    private String departureTime;
+    private LocalTime departureTime;
 
     @Column
-    private String arrivalTime;
+    private LocalTime arrivalTime;
 }
