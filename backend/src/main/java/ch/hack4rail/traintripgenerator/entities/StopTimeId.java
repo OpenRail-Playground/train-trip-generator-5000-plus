@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Builder
-public class StopTimeId implements Serializable {
+public final class StopTimeId implements Serializable {
     private String tripId;
 
     private String stopSequence;

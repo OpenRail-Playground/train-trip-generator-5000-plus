@@ -12,12 +12,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class Trip {
+public final class Trip {
 
+    @CsvBindByName(column = "trip_id", required = true)
+    private String id;
     @CsvBindByName(column = "route_id")
     private String routeId;
-    @CsvBindByName(column = "trip_id", required = true)
-    private String tripId;
     @CsvBindByName(column = "service_id")
     private String serviceId;
     @CsvBindByName(column = "trip_short_name")
