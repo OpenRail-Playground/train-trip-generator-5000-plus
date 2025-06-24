@@ -14,6 +14,10 @@
 		background-color: var(--db-adaptive-bg-basic-level-1-default);
 		font-weight: 900;
 
+		.db-icon:before {
+			background-color: var(--db-adaptive-bg-basic-level-3-default);
+		}
+
 		&:first-of-type,
 		&:last-of-type {
 			background-color: var(--db-adaptive-bg-basic-level-1-default);
