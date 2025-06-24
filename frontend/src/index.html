@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>TrainTripGenerator5000PlusFrontend</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <db-header [example]="true" [withName]="true" [withNavigation]="false">
+      <ng-container brand><db-brand> DBHeader </db-brand></ng-container>
+      <ng-container *dbMetaNavigation
+        ><db-link href="#"> Imprint </db-link></ng-container
+      >
+      <ng-container primary-action
+        ><db-button icon="magnifying_glass" variant="ghost" [noText]="true">
+          Search
+        </db-button></ng-container
+      >
+      <ng-container *dbSecondaryAction
+        ><db-button icon="x_placeholder" variant="ghost" [noText]="true">
+          Profile
+        </db-button></ng-container
+      >
+      <ng-container *dbNavigation
+        ><db-navigation>
+          <db-navigation-item icon="x_placeholder">
+            <ng-container *dbNavigationContent><a href="#"> Link </a></ng-container
+            >navigation-item
+          </db-navigation-item>
+          <db-navigation-item icon="x_placeholder" [disabled]="true">
+            <ng-container *dbNavigationContent
+              ><a href="#"> Link disabled </a></ng-container
+            >navigation-item
+          </db-navigation-item>
+        </db-navigation></ng-container
+      >Without Navigation
+    </db-header>
+    <app-root></app-root>
+  </body>
+</html>

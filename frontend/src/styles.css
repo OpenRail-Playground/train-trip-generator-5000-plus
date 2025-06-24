@@ -1,0 +1,26 @@
+@import "@db-ux/core-components/build/styles/rollup.css";
+@import "@db-ux/db-theme/build/styles/rollup.css";
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  inline-size: 100vw;
+  block-size: 100vh;
+}
+.quickfinder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  /* vertical align to the middle */
+  justify-content: center;
+
+  min-height: calc(100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px);
+
+  fieldset {
+      display: flex;
+  }
+}
+
+.your-trip {
+
+}
