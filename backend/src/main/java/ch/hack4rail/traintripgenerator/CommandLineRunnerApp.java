@@ -53,7 +53,6 @@ public class CommandLineRunnerApp implements CommandLineRunner {
 
         stopRepository.saveAll(stops.stream().map(StopEntityMapper::map).toList());
         routeRepository.saveAll(routes.stream().map(RouteEntityMapper::map).toList());
-        routeRepository.saveAll(routes.stream().map(RouteEntityMapper::map).toList());
         stopTimeRepository.saveAll(stopTimes.stream().map(StopTimeEntityMapper::map).toList());
         tripRepository.saveAll(trips.stream().map(TripEntityMapper::map).toList());
 
