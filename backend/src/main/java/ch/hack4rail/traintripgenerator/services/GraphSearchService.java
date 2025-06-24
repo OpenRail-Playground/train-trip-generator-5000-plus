@@ -62,7 +62,7 @@ public class GraphSearchService {
 					// TODO get stops
 					// n.trip.stops().stream()
 					Stream.<StopTimeEntity>of() //
-							.filter(stop -> n.getStopId().equals(stop.getStopId())) //
+							.filter(stop -> n.getStopId().equals(stop.getStop().getId())) //
 							.filter(stop -> stop.getDepartureTime()
 									.isAfter(n.getTime().toLocalTime().plus(minimumConnectionTime))) //
 							.filter(stop -> stop.getDepartureTime().isBefore(endOfTravelDay)) //
@@ -135,7 +135,7 @@ public class GraphSearchService {
 		StopTimeEntity tripArrival = trimmedStopTimeEntitys.getLast();
 		trimmedStopTimeEntitys.removeLast();
 		trimmedStopTimeEntitys.add(
-				new StopTimeEntity(tripArrival.getId(), tripArrival.getStopId(), tripArrival.getArrivalTime(), null));
+				new StopTimeEntity(tripArrival.getId(), tripArrival.getStop(), tripArrival.getArrivalTime(), null));
 		// TODO change to the REST api object
 		return new TripEntity();
 	}
@@ -177,7 +177,7 @@ public class GraphSearchService {
 		}
 
 		Long getStopId() {
-			return stop.getStopId();
+			return stop.getStop().getId();
 		}
 
 		@Override

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StopRepository extends JpaRepository<StopEntity, String> {
+public interface StopRepository extends JpaRepository<StopEntity, Long> {
 
     @Query(value = """
                    SELECT * FROM stops

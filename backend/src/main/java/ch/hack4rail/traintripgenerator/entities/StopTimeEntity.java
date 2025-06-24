@@ -4,6 +4,7 @@ package ch.hack4rail.traintripgenerator.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,8 +24,8 @@ public final class StopTimeEntity {
     @EmbeddedId
     private StopTimeId id;
 
-    @Column
-    private long stopId;
+    @ManyToOne(targetEntity = StopEntity.class)
+    private StopEntity stop;
 
     @Column
     private LocalTime departureTime;

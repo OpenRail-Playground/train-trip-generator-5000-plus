@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import ch.hack4rail.traintripgenerator.entities.TripEntity;
 
 @Repository
-public interface TripRepository extends JpaRepository<TripEntity, String> {
+public interface TripRepository extends JpaRepository<TripEntity, Long> {
 }
