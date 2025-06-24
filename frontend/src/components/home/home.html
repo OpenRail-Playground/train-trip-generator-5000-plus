@@ -1,30 +1,8 @@
-<main class="quickfinder">
+<main class="home">
 	<h1>Your Journey. Your Time. Make the best out of it.</h1>
 	<p>
 		Optimize your trip and make the most of every day. The best possible
 		travel steps by train tailored to your wishes.
 	</p>
-	<db-card>
-		<form method="post" action="/your-trip" (ngSubmit)="onSubmit()">
-			<fieldset>
-				<legend></legend>
-				<db-input label="From" variant="floating"></db-input>
-				<db-button
-					icon="arrows_horizontal"
-					noText="true"
-					variant="ghost"
-					>Switch from and to stations</db-button
-				>
-				<db-input label="To" variant="floating"></db-input>
-			</fieldset>
-			<db-input
-				type="number"
-				label="Maximal Travel Time/day (h)"
-				variant="floating"
-			></db-input>
-			<db-button type="submit" variant="brand" width="full"
-				>Search</db-button
-			>
-		</form>
-	</db-card>
+	<QuickfinderComponent />
 </main>

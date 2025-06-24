@@ -1,4 +1,4 @@
-.quickfinder {
+.home {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,21 +9,4 @@
 	min-height: calc(
 		100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px
 	);
-
-	fieldset {
-		padding: 0;
-
-		display: flex;
-		align-items: flex-end;
-		gap: var(--db-spacing-fixed-2xs);
-
-		& ~ db-input .db-input,
-		& ~ db-button .db-button,
-		& ~ db-custom-select .db-custom-select {
-			margin-inline: var(--db-spacing-fixed-2xs);
-			max-inline-size: calc(100% - var(--db-spacing-fixed-2xs) * 2);
-
-			margin-block: var(--db-spacing-fixed-2xs);
-		}
-	}
 }
