@@ -1,23 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="%BASE_URL%">
+    <base href="%BASE_URL%" />
     <title>Train Trip Generator 5000+</title>
   </head>
   <body>
-    <form method="post" action="#">
-      <fieldset>
-        <legend>Where do you want to go?</legend>
+    <header class="db-header" id="OVERWRITE_DEFAULT_ID">
+      <dialog class="db-drawer">
+        <article
+          class="db-drawer-container db-header-drawer"
+          spacing="small"
+          rounded="true"
+        >
+          <header class="db-drawer-header">
+            <div class="db-drawer-header-text"></div>
+            <db-button
+              type="button"
+              icon="cross"
+              variant="ghost"
+              no-text="true"
+            >
+              Close
+            </db-button>
+          </header>
+          <div class="db-drawer-content">
+            <div class="db-header-drawer-navigation">
+              <div class="db-header-navigation">
+                <nav id="OVERWRITE_DEFAULT_ID" class="db-navigation">
+                  <menu>
+                    <li class="db-navigation-item" icon="x_placeholder">
+                      <db-button
+                        class="db-navigation-item-expand-button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                      >
+                        <a href="#">Link</a>
+                      </db-button>
+                      <menu
+                        class="db-sub-navigation"
+                        auto-close="false"
+                        id="sub-navigation-2626202309644139"
+                      ></menu>
+                    </li>
+                    <li
+                      class="db-navigation-item"
+                      icon="x_placeholder"
+                      aria-disabled="true"
+                    >
+                      <db-button
+                        class="db-navigation-item-expand-button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                        disabled=""
+                      >
+                        <a href="#">Link disabled</a>
+                      </db-button>
+                      <menu
+                        class="db-sub-navigation"
+                        auto-close="false"
+                        id="sub-navigation-4309191602513389"
+                      ></menu>
+                    </li>
+                  </menu>
+                </nav>
+              </div>
+              <div class="db-header-meta-navigation">
+                <db-link
+                  href="#"
+                  hide-icon-after="false"
+                  content="internal"
+                  >Imprint</db-link
+                >
+              </div>
+            </div>
+            <div class="db-header-secondary-action">
+              <db-button
+                type="button"
+                icon="x_placeholder"
+                variant="ghost"
+                no-text="true"
+              >
+                Profile
+              </db-button>
+            </div>
+          </div>
+        </article>
+      </dialog>
+      <div class="db-header-meta-navigation">
+        <db-link
+          href="#"
+          hide-icon-after="false"
+          content="internal"
+          >Imprint</db-link
+        >
+      </div>
+      <div class="db-header-navigation-bar">
+        <div class="db-header-brand-container">
+          <div icon="brand" class="db-brand">DBHeader</div>
+        </div>
+        <div class="db-header-navigation-container">
+          <div class="db-header-navigation">
+          </div>
+          <div class="db-header-primary-action">
+            <db-button
+              type="button"
+              icon="magnifying_glass"
+              variant="ghost"
+              no-text="true"
+            >
+              Search
+            </db-button>
+          </div>
+        </div>
+        <div class="db-header-action-container">
+          <div class="db-header-burger-menu-container">
+            <db-button
+              id="OVERWRITE_DEFAULT_ID-burger-menu"
+              type="button"
+              icon="menu"
+              variant="ghost"
+              no-text="true"
+            >
+              BurgerMenu
+            </db-button>
+          </div>
+          <div class="db-header-secondary-action">
+            <db-button
+              type="button"
+              icon="x_placeholder"
+              variant="ghost"
+              no-text="true"
+            >
+              Profile
+            </db-button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <form method="post" action="#">
+        <fieldset>
+          <legend>Where do you want to go?</legend>
 
-        <db-input label="From"></db-input>
-        <db-input label="To"></db-input>
-        <db-input type="number" label="Maximal Travel Time/day"></db-input>
-      </fieldset>
-      <db-button type="submit" variant="brand">Search</db-button>
-    </form>
+          <db-input label="From"></db-input>
+          <db-input label="To"></db-input>
+          <db-input type="number" label="Maximal Travel Time/day"></db-input>
+        </fieldset>
+        <db-button type="submit" variant="brand">Search</db-button>
+      </form>
+    </main>
+    <footer></footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
