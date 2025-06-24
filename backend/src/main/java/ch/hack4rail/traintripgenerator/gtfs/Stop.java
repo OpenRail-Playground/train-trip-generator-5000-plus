@@ -1,5 +1,6 @@
 package ch.hack4rail.traintripgenerator.gtfs;
 
+import com.fasterxml.jackson.core.io.schubfach.FloatToDecimal;
 import com.opencsv.bean.CsvBindByName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,18 +16,18 @@ import lombok.Setter;
 public final class Stop {
 
     @CsvBindByName(column = "stop_id", required = true)
-    private long id;
+    private Long id;
 
     @CsvBindByName(column = "stop_name")
     private String name;
 
-    @CsvBindByName(column = "parent_station")
-    private long parentStationId;
+    @CsvBindByName(column = "parent_station",  required = false)
+    private Long parentStationId;
 
     @CsvBindByName(column = "stop_lat")
-    private float latitude;
+    private Float latitude;
 
     @CsvBindByName(column = "stop_lon")
-    private float longitude;
+    private Float longitude;
 
 }

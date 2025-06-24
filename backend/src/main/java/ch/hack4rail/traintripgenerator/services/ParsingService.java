@@ -17,6 +17,8 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static com.opencsv.enums.CSVReaderNullFieldIndicator.BOTH;
+
 @Service
 @RequiredArgsConstructor
 public class ParsingService {

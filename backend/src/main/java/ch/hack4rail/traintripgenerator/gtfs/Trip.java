@@ -15,13 +15,17 @@ import lombok.Setter;
 public final class Trip {
 
     @CsvBindByName(column = "trip_id", required = true)
-    private long id;
+    private Long id;
+
     @CsvBindByName(column = "route_id")
-    private long routeId;
+    private Long routeId;
+
     @CsvBindByName(column = "service_id")
-    private long serviceId;
+    private Long serviceId;
+
     @CsvBindByName(column = "trip_short_name")
     private String tripShortName;
+
     @CsvBindByName(column = "direction_id")
-    private long directionId;
+    private Long directionId;
 }

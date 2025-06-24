@@ -15,10 +15,10 @@ import lombok.Setter;
 public final class Route {
 
     @CsvBindByName(column = "route_id", required = true)
-    private long id;
+    private Long id;
 
     @CsvBindByName(column = "agency_id")
-    private long agencyId;
+    private Long agencyId;
 
     @CsvBindByName(column = "route_short_name")
     private String routeShortName;
@@ -30,7 +30,7 @@ public final class Route {
     private String routeDesc;
 
     @CsvBindByName(column = "route_type")
-    private int routeType;
+    private Integer routeType;
 
 
 }

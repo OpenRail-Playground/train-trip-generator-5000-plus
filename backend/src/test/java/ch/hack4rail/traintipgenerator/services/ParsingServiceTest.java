@@ -3,6 +3,7 @@ package ch.hack4rail.traintipgenerator.services;
 
 import ch.hack4rail.traintripgenerator.TrainTripGeneratorApplication;
 import ch.hack4rail.traintripgenerator.gtfs.Route;
+import ch.hack4rail.traintripgenerator.gtfs.Stop;
 import ch.hack4rail.traintripgenerator.gtfs.Trip;
 import ch.hack4rail.traintripgenerator.services.ParsingService;
 import org.junit.jupiter.api.Assertions;
@@ -22,6 +23,12 @@ public class ParsingServiceTest {
     @Test
     public void testRoutesParsing() throws IOException {
         var trips = parsingService.parseCSV("routes.txt", Route.class);
+        Assertions.assertNotNull(trips);
+    }
+
+    @Test
+    public void testStopsParsing() throws IOException {
+        var trips = parsingService.parseCSV("stops.txt", Stop.class);
         Assertions.assertNotNull(trips);
     }
 
