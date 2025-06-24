@@ -10,6 +10,7 @@ public class StopEntityMapper {
         return StopEntity.builder()
                 .id(e.getId())
                 .name(e.getName())
+                .parentStationId(e.getParentStationId())
                 .longitude(e.getLongitude())
                 .latitude(e.getLatitude())
                 .build();
