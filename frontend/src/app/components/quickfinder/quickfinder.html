@@ -1,0 +1,26 @@
+<db-card>
+	<form
+		method="post"
+		action="/your-trip"
+		(ngSubmit)="onSubmit()"
+		class="quickfinder"
+	>
+		<fieldset>
+			<legend></legend>
+			<db-input label="From" variant="floating" [dataListId]="datalist"></db-input>
+			<datalist id="datalist">
+				<option data-id="34234">Berlin Hbf</option>
+			</datalist>
+			<db-button icon="arrows_horizontal" noText="true" variant="ghost"
+				>Switch from and to stations</db-button
+			>
+			<db-input label="To" variant="floating"></db-input>
+		</fieldset>
+		<db-input
+			type="number"
+			label="Maximal Travel Time/day (h)"
+			variant="floating"
+		></db-input>
+		<db-button type="submit" variant="brand" width="full">Search</db-button>
+	</form>
+</db-card>

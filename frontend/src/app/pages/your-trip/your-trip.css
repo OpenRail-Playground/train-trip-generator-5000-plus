@@ -1,0 +1,34 @@
+.your-trip {
+	display: flex;
+
+	section {
+		flex: 0 0 40%;
+	}
+	aside {
+		flex: 0 0 60%;
+	}
+
+	.travel {
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
+
+		strong {
+			display: block;
+			font-weight: 900;
+			font-size: var(--db-headline-size-md);
+		}
+	}
+
+	.stop {
+		background-color: var(--db-adaptive-bg-basic-level-1-default);
+		font-weight: 900;
+
+		.db-icon:before {
+			background-color: var(--db-adaptive-bg-basic-level-3-default);
+		}
+
+		&:first-of-type,
+		&:last-of-type {
+			background-color: var(--db-adaptive-bg-basic-level-1-default);
+		}
+	}
+}
