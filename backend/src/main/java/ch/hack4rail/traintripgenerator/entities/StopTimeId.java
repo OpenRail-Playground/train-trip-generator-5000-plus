@@ -19,9 +19,9 @@ import java.io.Serializable;
 public final class StopTimeId implements Serializable {
 
     @Column
-    private long tripId;
+    private Long tripId;
 
     @Column
-    private String stopSequence;
+    private Integer stopSequence;
 
 }

@@ -18,7 +18,7 @@ import lombok.Setter;
 public final class AgencyEntity {
 
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private String name;

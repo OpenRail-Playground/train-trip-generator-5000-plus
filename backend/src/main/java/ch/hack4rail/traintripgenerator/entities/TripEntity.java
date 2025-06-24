@@ -21,18 +21,18 @@ import lombok.Setter;
 public final class TripEntity {
 
     @Id
-    private long id;
+    private Long id;
 
     @ManyToOne(targetEntity = RouteEntity.class)
     @JoinColumn(name = "route_id")
     private RouteEntity route;
 
     @Column
-    private long serviceId;
+    private Long serviceId;
 
     @Column
     private String tripShortName;
 
     @Column
-    private long directionId;
+    private Long directionId;
 }

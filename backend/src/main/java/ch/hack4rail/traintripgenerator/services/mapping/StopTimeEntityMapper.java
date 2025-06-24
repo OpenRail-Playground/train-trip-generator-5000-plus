@@ -5,7 +5,6 @@ import ch.hack4rail.traintripgenerator.entities.StopTimeEntity;
 import ch.hack4rail.traintripgenerator.entities.StopTimeId;
 import ch.hack4rail.traintripgenerator.gtfs.StopTime;
 import ch.hack4rail.traintripgenerator.repositories.StopRepository;
-import ch.hack4rail.traintripgenerator.repositories.StopTimeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;

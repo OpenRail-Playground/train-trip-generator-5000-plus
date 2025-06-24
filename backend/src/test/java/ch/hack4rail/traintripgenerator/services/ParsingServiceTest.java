@@ -1,11 +1,9 @@
-package ch.hack4rail.traintipgenerator.services;
+package ch.hack4rail.traintripgenerator.services;
 
 
-import ch.hack4rail.traintripgenerator.TrainTripGeneratorApplication;
 import ch.hack4rail.traintripgenerator.gtfs.Route;
 import ch.hack4rail.traintripgenerator.gtfs.Stop;
-import ch.hack4rail.traintripgenerator.gtfs.Trip;
-import ch.hack4rail.traintripgenerator.services.ParsingService;
+import ch.hack4rail.traintripgenerator.gtfs.StopTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +20,20 @@ public class ParsingServiceTest {
 
     @Test
     public void testRoutesParsing() throws IOException {
-        var trips = parsingService.parseCSV("routes.txt", Route.class);
-        Assertions.assertNotNull(trips);
+        var parsed = parsingService.parseCSV("routes.txt", Route.class);
+        Assertions.assertNotNull(parsed);
     }
 
     @Test
     public void testStopsParsing() throws IOException {
-        var trips = parsingService.parseCSV("stops.txt", Stop.class);
-        Assertions.assertNotNull(trips);
+        var parsed = parsingService.parseCSV("stops.txt", Stop.class);
+        Assertions.assertNotNull(parsed);
+    }
+
+    @Test
+    public void testStopTimesParsing() throws IOException {
+        var parsed = parsingService.parseCSV("stop_times.txt", StopTime.class);
+        Assertions.assertNotNull(parsed);
     }
 
 

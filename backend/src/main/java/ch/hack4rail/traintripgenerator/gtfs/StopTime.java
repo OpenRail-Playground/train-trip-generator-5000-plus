@@ -18,7 +18,7 @@ public final class StopTime {
     private Long stopId;
 
     @CsvBindByName(column = "stop_sequence")
-    private String stopSequence;
+    private Integer stopSequence;
 
     @CsvBindByName(column = "trip_id")
     private Long tripId;

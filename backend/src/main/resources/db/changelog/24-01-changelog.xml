@@ -36,7 +36,7 @@
             <column name="trip_id" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="pk_stoptimeentity"/>
             </column>
-            <column name="stop_sequence" type="VARCHAR(255)">
+            <column name="stop_sequence" type="integer">
                 <constraints primaryKey="true" primaryKeyName="pk_stoptimeentity"/>
             </column>
         </createTable>

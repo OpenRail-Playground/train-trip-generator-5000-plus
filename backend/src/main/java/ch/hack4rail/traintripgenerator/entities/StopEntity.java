@@ -19,18 +19,18 @@ import lombok.Setter;
 public final class StopEntity {
 
     @Id
-    private long id;
+    private Long id;
 
     @Column
     private String name;
 
     @Column
-    private long parentStationId;
+    private Long parentStationId;
 
     @Column
-    private float latitude;
+    private Float latitude;
 
     @Column
-    private float longitude;
+    private Float longitude;
 
 }
