@@ -1,13 +1,13 @@
-package main.java.ch.hack4rail.traintipgenerator;
+package ch.hack4rail.traintripgenerator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TrainTipGeneratorApplication {
+public class TrainTripGeneratorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TrainTipGeneratorApplication.class, args);
+        SpringApplication.run(TrainTripGeneratorApplication.class, args);
     }
 
 }

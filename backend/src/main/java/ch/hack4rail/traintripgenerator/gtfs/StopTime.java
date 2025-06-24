@@ -1,4 +1,4 @@
-package ch.hack4rail.traintipgenerator.gtfs;
+package ch.hack4rail.traintripgenerator.gtfs;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.AllArgsConstructor;

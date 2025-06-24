@@ -1,4 +1,5 @@
-package ch.hack4rail.traintipgenerator.entities;
+package ch.hack4rail.traintripgenerator.entities;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,26 +15,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Entity(name = "routes")
-public final class RouteEntity {
+@Entity(name = "stops")
+public class StopEntity {
 
     @Id
     private String id;
 
     @Column
-    private String agencyId;
+    private String name;
 
     @Column
-    private String routeShortName;
+    private String parentStationId;
 
     @Column
-    private String routeLongName;
+    private String latitude;
 
     @Column
-    private String routeDesc;
-
-    @Column
-    private String routeType;
-
+    private String longitude;
 
 }

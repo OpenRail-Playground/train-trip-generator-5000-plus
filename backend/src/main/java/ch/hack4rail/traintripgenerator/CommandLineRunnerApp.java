@@ -1,17 +1,18 @@
-package ch.hack4rail.traintipgenerator;
+package ch.hack4rail.traintripgenerator;
 
-import ch.hack4rail.traintipgenerator.gtfs.Route;
-import ch.hack4rail.traintipgenerator.gtfs.Stop;
-import ch.hack4rail.traintipgenerator.gtfs.StopTime;
-import ch.hack4rail.traintipgenerator.gtfs.Trip;
-import ch.hack4rail.traintipgenerator.repositories.RouteRepository;
-import ch.hack4rail.traintipgenerator.repositories.StopRepository;
-import ch.hack4rail.traintipgenerator.services.ParsingService;
-import ch.hack4rail.traintipgenerator.services.mapping.RouteEntityMapper;
-import ch.hack4rail.traintipgenerator.services.mapping.StopEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import ch.hack4rail.traintripgenerator.gtfs.Route;
+import ch.hack4rail.traintripgenerator.gtfs.Stop;
+import ch.hack4rail.traintripgenerator.gtfs.StopTime;
+import ch.hack4rail.traintripgenerator.gtfs.Trip;
+import ch.hack4rail.traintripgenerator.repositories.RouteRepository;
+import ch.hack4rail.traintripgenerator.repositories.StopRepository;
+import ch.hack4rail.traintripgenerator.services.ParsingService;
+import ch.hack4rail.traintripgenerator.services.mapping.RouteEntityMapper;
+import ch.hack4rail.traintripgenerator.services.mapping.StopEntityMapper;
 
 @Component
 @RequiredArgsConstructor

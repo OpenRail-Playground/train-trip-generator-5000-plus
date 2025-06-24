@@ -1,4 +1,4 @@
-package ch.hack4rail.traintipgenerator.entities;
+package ch.hack4rail.traintripgenerator.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

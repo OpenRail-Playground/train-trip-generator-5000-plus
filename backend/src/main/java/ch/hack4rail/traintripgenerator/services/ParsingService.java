@@ -1,4 +1,4 @@
-package ch.hack4rail.traintipgenerator.services;
+package ch.hack4rail.traintripgenerator.services;
 
 
 import com.opencsv.bean.CsvToBean;

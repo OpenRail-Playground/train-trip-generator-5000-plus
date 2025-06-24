@@ -1,4 +1,4 @@
-package ch.hack4rail.traintipgenerator.services;
+package ch.hack4rail.traintripgenerator.services;
 
 import static java.util.Comparator.comparing;
 
@@ -19,8 +19,8 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
-import ch.hack4rail.traintipgenerator.entities.StopTimeEntity;
-import ch.hack4rail.traintipgenerator.entities.TripEntity;
+import ch.hack4rail.traintripgenerator.entities.StopTimeEntity;
+import ch.hack4rail.traintripgenerator.entities.TripEntity;
 import lombok.RequiredArgsConstructor;
 
 @Service

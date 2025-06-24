@@ -1,7 +1,7 @@
-package ch.hack4rail.traintipgenerator.services.mapping;
+package ch.hack4rail.traintripgenerator.services.mapping;
 
-import ch.hack4rail.traintipgenerator.entities.StopEntity;
-import ch.hack4rail.traintipgenerator.gtfs.Stop;
+import ch.hack4rail.traintripgenerator.entities.StopEntity;
+import ch.hack4rail.traintripgenerator.gtfs.Stop;
 
 public class StopEntityMapper {
 

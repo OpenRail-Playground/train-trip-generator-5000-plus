@@ -1,8 +1,6 @@
-package ch.hack4rail.traintipgenerator.entities;
+package ch.hack4rail.traintripgenerator.gtfs;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.opencsv.bean.CsvBindByName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,17 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Entity(name = "trips")
-public class TripEntity {
+public class Trip {
 
-    @Column
+    @CsvBindByName(column = "route_id")
     private String routeId;
-    @Id
+    @CsvBindByName(column = "trip_id", required = true)
     private String tripId;
-    @Column
+    @CsvBindByName(column = "service_id")
     private String serviceId;
-    @Column
+    @CsvBindByName(column = "trip_short_name")
     private String tripShortName;
-    @Column
+    @CsvBindByName(column = "direction_id")
     private String directionId;
 }

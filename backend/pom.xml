@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ch.hack4rail</groupId>
-    <artifactId>train-tip-generator</artifactId>
+    <artifactId>train-trip-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>train-trip-generator</name>
     <description>train-trip-generator</description>

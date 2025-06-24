@@ -1,10 +1,11 @@
-package main.java.ch.hack4rail.traintipgenerator.controller;
+package ch.hack4rail.traintripgenerator.controller;
 
-import main.java.ch.hack4rail.traintipgenerator.request.StopRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import ch.hack4rail.traintripgenerator.request.StopRequest;
 
 @RestController
 @RequestMapping("/api")

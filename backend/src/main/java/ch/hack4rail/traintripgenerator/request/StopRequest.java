@@ -1,4 +1,4 @@
-package main.java.ch.hack4rail.traintipgenerator.request;
+package ch.hack4rail.traintripgenerator.request;
 
 public record StopRequest(
         String stationName

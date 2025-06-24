@@ -1,7 +1,7 @@
-package ch.hack4rail.traintipgenerator.services.mapping;
+package ch.hack4rail.traintripgenerator.services.mapping;
 
-import ch.hack4rail.traintipgenerator.entities.RouteEntity;
-import ch.hack4rail.traintipgenerator.gtfs.Route;
+import ch.hack4rail.traintripgenerator.entities.RouteEntity;
+import ch.hack4rail.traintripgenerator.gtfs.Route;
 
 public class RouteEntityMapper {
 
