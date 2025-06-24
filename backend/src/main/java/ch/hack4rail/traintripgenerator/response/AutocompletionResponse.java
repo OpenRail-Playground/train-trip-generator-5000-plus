@@ -1,4 +1,4 @@
-package ch.hack4rail.traintipgenerator.response;
+package ch.hack4rail.traintripgenerator.response;
 
 import java.util.List;
 

@@ -12,25 +12,27 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Objects;import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
 import ch.hack4rail.traintripgenerator.entities.StopTimeEntity;
 import ch.hack4rail.traintripgenerator.entities.TripEntity;
+import ch.hack4rail.traintripgenerator.repositories.StopTimeRepository;
+import ch.hack4rail.traintripgenerator.repositories.TripRepository;
+import ch.hack4rail.traintripgenerator.response.TripResponse;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class GraphSearchService {
 
-	// TODO get repositories
-	//	private final TripEntityRepository tripRepository;
+	private StopTimeRepository stopTimeRepository;
+	private TripRepository tripRepository;
 
-	public List<TripEntity> getOptimalRoute(Long start, Long end, Duration maxDayTravelTime,
+	public Optional<TripResponse> getOptimalRoute(Long startStopParentId, Long endStopParentId, Duration maxDayTravelTime,
 			LocalTime startOfTravelDay, Duration minimumConnectionTime) {
 		LocalTime endOfTravelDay = startOfTravelDay.plus(maxDayTravelTime);
 		LocalDate date = LocalDate.now();
@@ -39,71 +41,77 @@ public class GraphSearchService {
 		Set<Long> visitedStations = new HashSet<>();
 		Map<Node, Node> parentMap = new HashMap<>();
 
-		queue.add(new StartingNode(departureTime(date, startOfTravelDay), start));
+		queue.add(new StartingNode(departureTime(date, startOfTravelDay), startStopParentId));
 
 		while (!queue.isEmpty()) {
 			Node n = queue.poll();
-			if (n.isArrival() && n.getStopId().equals(end)) {
-				return getTripEntitys(parentMap, n);
+			if (n.isArrival() && endStopParentId.equals(n.getParentStopId())) {
+				return getTripResponse(parentMap, n);
 			}
 			if (n.isArrival()) {
-				if (!visitedStations.add(n.getStopId())) {
-					// Optional improvement: remove all other arrivals in this station from the
-					// queue now
+				if (!visitedStations.add(n.getParentStopId())) {
 					continue;
 				}
-				// TODO get trips
-				List<TripEntity> tripsDepartingIn = List.of(); // tripRepository.findTripEntitysDepartingIn(n.getStopId());
-				// Optional improvement: only use a route once
-				for (TripEntity trip : tripsDepartingIn) {
-					if (trip.equals(n.trip)) {
-						continue;
-					}
-					// TODO get stops
-					// n.trip.stops().stream()
-					Stream.<StopTimeEntity>of() //
-							.filter(stop -> n.getStopId().equals(stop.getStop().getId())) //
-							.filter(stop -> stop.getDepartureTime()
-									.isAfter(n.getTime().toLocalTime().plus(minimumConnectionTime))) //
-							.filter(stop -> stop.getDepartureTime().isBefore(endOfTravelDay)) //
-							.findFirst() //
-							.map(stop -> new Node(false, stop, trip, n.getTime().toLocalDate())) //
-							.ifPresent(node -> {
-								queue.add(node);
-								parentMap.put(node, n);
-							});
-				}
-				LocalDate nextDay = n.getTime().toLocalDate().plusDays(1);
-				Node nextDayNode = new StartingNode(departureTime(nextDay, startOfTravelDay), n.getStopId());
-				queue.add(nextDayNode);
-				parentMap.put(nextDayNode, n);
+				List<Node> nextNodes = getNextNodesForArrival(n, minimumConnectionTime, startOfTravelDay, endOfTravelDay);
+				nextNodes.forEach(nextNode -> {
+					queue.add(nextNode);
+					parentMap.put(nextNode, n);
+				});
 			} else {
-				boolean foundDeparture = false;
-				// TODO get stops
-				for (StopTimeEntity stop : List.<StopTimeEntity>of()) {// n.trip.stops()) {
-					if (stop.getArrivalTime() != null && stop.getArrivalTime().isAfter(endOfTravelDay)) {
-						break;
-					}
-					if (foundDeparture) {
-						Node arrival = new Node(true, stop, n.trip, n.dateTime.toLocalDate());
-						queue.add(arrival);
-						parentMap.put(arrival, n);
-					}
-					if (stop.equals(n.getStopTimeEntity())) {
-						foundDeparture = true;
-					}
-				}
+				List<Node> nextNodes = getNextNodesForDeparture(endOfTravelDay, n);
+				nextNodes.forEach(nextNode -> {
+					queue.add(nextNode);
+					parentMap.put(nextNode, n);
+				});
 			}
 		}
 
-		return null;
+		return Optional.empty();
+	}
+
+	private List<Node> getNextNodesForDeparture(LocalTime endOfTravelDay, Node n) {
+		// TODO get stops in sequential order
+		List<Node> nextNodes = new ArrayList<>();
+		boolean foundDeparture = false;
+		for (StopTimeEntity stop : List.<StopTimeEntity>of()) {// n.trip.stops()) {
+			if (stop.getArrivalTime() != null && stop.getArrivalTime().isAfter(endOfTravelDay)) {
+				break;
+			}
+			if (foundDeparture) {
+				nextNodes.add(new Node(true, stop, n.dateTime.toLocalDate()));
+			}
+			if (stop.equals(n.getStopTimeEntity())) {
+				foundDeparture = true;
+			}
+		}
+		return nextNodes;
+	}
+	
+	private List<Node> getNextNodesForArrival(Node n, Duration minimumConnectionTime, LocalTime startOfTravelDay, LocalTime endOfTravelDay) {
+		List<Node> nextNodes = new ArrayList<>();
+		List<StopTimeEntity> stopTimes = stopTimeRepository.findByStopParentStationId(n.getParentStopId());
+		for (StopTimeEntity stopTime : stopTimes) {
+			if (stopTime.getId().getTripId() == n.getStopTimeEntity().getId().getTripId()) {
+				continue;
+			}
+			if (stopTime.getDepartureTime().isBefore(n.getTime().toLocalTime().plus(minimumConnectionTime))) {
+				continue;
+			}
+			if (stopTime.getDepartureTime().isAfter(endOfTravelDay)) {
+				continue;
+			}
+			nextNodes.add(new Node(false, stopTime, n.getTime().toLocalDate()));
+		}
+		LocalDate nextDay = n.getTime().toLocalDate().plusDays(1);
+		nextNodes.add(new StartingNode(departureTime(nextDay, startOfTravelDay), n.getParentStopId()));
+		return nextNodes;
 	}
 
 	private LocalDateTime departureTime(LocalDate date, LocalTime startOfTravelDay) {
 		return LocalDateTime.of(date, startOfTravelDay);
 	}
 
-	private List<TripEntity> getTripEntitys(Map<Node, Node> parentMap, Node n) {
+	private Optional<TripResponse> getTripResponse(Map<Node, Node> parentMap, Node n) {
 		LinkedList<Node> nodes = getNodeList(parentMap, n);
 		List<TripEntity> trips = new ArrayList<>();
 		Node departure = null;
@@ -118,12 +126,12 @@ public class GraphSearchService {
 				departure = null;
 			}
 		}
-		return trips;
+		return Optional.ofNullable(null);
 	}
 
 	private TripEntity trimTripEntity(Node departure, Node arrival) {
 		// TODO change to the REST api object
-		//		TripEntity trip = departure.trip
+		// TripEntity trip = departure.trip
 		// TODO get all stopTimes
 		LinkedList<StopTimeEntity> trimmedStopTimeEntitys = new LinkedList<>();// new LinkedList<>(trip.stops));
 		while (!trimmedStopTimeEntitys.peekFirst().equals(departure.stop)) {
@@ -155,13 +163,13 @@ public class GraphSearchService {
 		private boolean arrival;
 		private LocalDateTime dateTime;
 		private StopTimeEntity stop;
-		private TripEntity trip;
+		private Long parentStopId;
 
-		public Node(boolean arrival, StopTimeEntity stop, TripEntity trip, LocalDate date) {
+		public Node(boolean arrival, StopTimeEntity stop, LocalDate date) {
 			this.arrival = arrival;
 			this.stop = stop;
-			this.trip = trip;
 			this.dateTime = LocalDateTime.of(date, arrival ? stop.getArrivalTime() : stop.getDepartureTime());
+			this.parentStopId = stop.getStop().getParentStationId();
 		}
 
 		boolean isArrival() {
@@ -176,8 +184,8 @@ public class GraphSearchService {
 			return dateTime;
 		}
 
-		Long getStopId() {
-			return stop.getStop().getId();
+		Long getParentStopId() {
+			return parentStopId;
 		}
 
 		@Override
@@ -185,7 +193,7 @@ public class GraphSearchService {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + getEnclosingInstance().hashCode();
-			result = prime * result + Objects.hash(arrival, trip, stop);
+			result = prime * result + Objects.hash(arrival, dateTime, parentStopId, stop);
 			return result;
 		}
 
@@ -200,7 +208,8 @@ public class GraphSearchService {
 			Node other = (Node) obj;
 			if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
 				return false;
-			return arrival == other.arrival && Objects.equals(trip, other.trip) && Objects.equals(stop, other.stop);
+			return arrival == other.arrival && Objects.equals(dateTime, other.dateTime)
+					&& Objects.equals(parentStopId, other.parentStopId) && Objects.equals(stop, other.stop);
 		}
 
 		private GraphSearchService getEnclosingInstance() {
@@ -212,12 +221,12 @@ public class GraphSearchService {
 	private class StartingNode extends Node {
 
 		private LocalDateTime time;
-		private Long stopId;
+		private Long stopParentId;
 
-		public StartingNode(LocalDateTime time, Long stopId) {
-			super(true, null, null, null);
+		public StartingNode(LocalDateTime time, Long stopParentId) {
+			super(true, null, null);
 			this.time = time;
-			this.stopId = stopId;
+			this.stopParentId = stopParentId;
 		}
 
 		@Override
@@ -225,9 +234,8 @@ public class GraphSearchService {
 			return time;
 		}
 
-		@Override
-		Long getStopId() {
-			return stopId;
+		Long getParentStopId() {
+			return stopParentId;
 		}
 
 		@Override
@@ -235,7 +243,7 @@ public class GraphSearchService {
 			final int prime = 31;
 			int result = super.hashCode();
 			result = prime * result + getEnclosingInstance().hashCode();
-			result = prime * result + Objects.hash(stopId, time);
+			result = prime * result + Objects.hash(stopParentId, time);
 			return result;
 		}
 
@@ -250,7 +258,7 @@ public class GraphSearchService {
 			StartingNode other = (StartingNode) obj;
 			if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
 				return false;
-			return Objects.equals(stopId, other.stopId) && Objects.equals(time, other.time);
+			return Objects.equals(stopParentId, other.stopParentId) && Objects.equals(time, other.time);
 		}
 
 		private GraphSearchService getEnclosingInstance() {
