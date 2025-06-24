@@ -1,3 +1,4 @@
+
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { TripResponse, TripResponsePart } from '../../models/trip-response';
@@ -8,7 +9,8 @@ import { TripResponse, TripResponsePart } from '../../models/trip-response';
 	styleUrls: ['./train-map.css'],
 })
 export class TrainMapComponent implements AfterViewInit {
-	@ViewChild('map', { static: true }) mapElement!: ElementRef<HTMLDivElement>;
+
+ 	@ViewChild('map', { static: true }) mapElement!: ElementRef<HTMLDivElement>;
 	private map!: L.Map;
 
 	@Input() tripResponse: TripResponse | undefined;
