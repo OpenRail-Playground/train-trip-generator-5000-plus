@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Entity
+@Entity(name = "routes")
 public final class RouteEntity {
 
     @Id

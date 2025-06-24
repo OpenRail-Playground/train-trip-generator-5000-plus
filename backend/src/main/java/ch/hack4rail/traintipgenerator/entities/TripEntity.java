@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Entity
+@Entity(name = "trips")
 public class TripEntity {
 
     @Column

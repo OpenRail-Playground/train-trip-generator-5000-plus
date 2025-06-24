@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Entity
+@Entity(name = "stops")
 public class StopEntity {
 
     @Id

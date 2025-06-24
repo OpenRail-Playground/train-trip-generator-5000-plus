@@ -1,12 +1,14 @@
 package ch.hack4rail.traintipgenerator;
 
-import ch.hack4rail.traintipgenerator.entities.StopEntity;
 import ch.hack4rail.traintipgenerator.gtfs.Route;
 import ch.hack4rail.traintipgenerator.gtfs.Stop;
 import ch.hack4rail.traintipgenerator.gtfs.StopTime;
 import ch.hack4rail.traintipgenerator.gtfs.Trip;
+import ch.hack4rail.traintipgenerator.repositories.RouteRepository;
 import ch.hack4rail.traintipgenerator.repositories.StopRepository;
 import ch.hack4rail.traintipgenerator.services.ParsingService;
+import ch.hack4rail.traintipgenerator.services.mapping.RouteEntityMapper;
+import ch.hack4rail.traintipgenerator.services.mapping.StopEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 public class CommandLineRunnerApp implements CommandLineRunner {
 
     private final ParsingService parsingService;
+    private final StopRepository stopRepository;
+    private final RouteRepository routeRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,6 +29,9 @@ public class CommandLineRunnerApp implements CommandLineRunner {
         var stopTimes = parsingService.parseCSV("stop_times.txt", StopTime.class);
         var routes = parsingService.parseCSV("routes.txt", Route.class);
         var trips = parsingService.parseCSV("trips.txt", Trip.class);
+
+        stopRepository.saveAll(stops.stream().map(StopEntityMapper::map).toList());
+        routeRepository.saveAll(routes.stream().map(RouteEntityMapper::map).toList());
 
         System.out.println("stops: " + stops.size());
         System.out.println("times: " + stopTimes.size());
