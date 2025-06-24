@@ -1,4 +1,13 @@
 .your-trip {
+	display: flex;
+
+	section {
+		flex: 0 0 40%;
+	}
+	aside {
+		flex: 0 0 60%;
+	}
+
 	.travel {
 		background-color: var(--db-adaptive-bg-basic-level-1-default);
 

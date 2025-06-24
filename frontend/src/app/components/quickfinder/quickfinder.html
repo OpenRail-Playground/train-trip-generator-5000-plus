@@ -7,7 +7,10 @@
 	>
 		<fieldset>
 			<legend></legend>
-			<db-input label="From" variant="floating"></db-input>
+			<db-input label="From" variant="floating" [dataListId]="datalist"></db-input>
+			<datalist id="datalist">
+				<option data-id="34234">Berlin Hbf</option>
+			</datalist>
 			<db-button icon="arrows_horizontal" noText="true" variant="ghost"
 				>Switch from and to stations</db-button
 			>
