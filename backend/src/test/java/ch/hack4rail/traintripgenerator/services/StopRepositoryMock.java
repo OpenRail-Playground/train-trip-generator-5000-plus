@@ -24,7 +24,7 @@ public class StopRepositoryMock implements StopRepository {
 		return stops.stream().filter(stop -> stop.getName().equals(stopName)) //
 				.filter(stop -> stop.getParentStationId() == null) //
 				.findFirst().orElseGet(() -> {
-					StopEntity stopEntity = StopEntity.builder().id((long) stopId++).name(stopName).build();
+					StopEntity stopEntity = StopEntity.builder().id((long) stopId++).name(stopName).latitude(1f).longitude(1f).build();
 					stops.add(stopEntity);
 					return stopEntity;
 				});
@@ -35,7 +35,7 @@ public class StopRepositoryMock implements StopRepository {
 				.filter(stop -> stop.getParentStationId() != null) //
 				.findFirst().orElseGet(() -> {
 					StopEntity stopEntity = StopEntity.builder().id((long) stopId++).parentStationId(parentId)
-							.name(stopName).build();
+							.name(stopName).latitude(1f).longitude(1f).build();
 					stops.add(stopEntity);
 					return stopEntity;
 				});

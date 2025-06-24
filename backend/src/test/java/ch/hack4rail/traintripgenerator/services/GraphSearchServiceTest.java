@@ -1,5 +1,6 @@
 package ch.hack4rail.traintripgenerator.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
@@ -14,6 +15,7 @@ import ch.hack4rail.traintripgenerator.entities.StopTimeEntity;
 import ch.hack4rail.traintripgenerator.entities.StopTimeId;
 import ch.hack4rail.traintripgenerator.entities.TripEntity;
 import ch.hack4rail.traintripgenerator.response.TripResponse;
+import ch.hack4rail.traintripgenerator.response.TripResponsePart;
 
 public class GraphSearchServiceTest {
 
@@ -21,7 +23,7 @@ public class GraphSearchServiceTest {
 	private StopRepositoryMock stopRepo;
 	private StopTimeRepositoryMock stopTimeRepo;
 	private GraphSearchService search;
-	
+
 	@BeforeEach
 	public void setup() {
 		tripRepo = new TripRepositoryMock();
@@ -41,22 +43,30 @@ public class GraphSearchServiceTest {
 
 	@Test
 	public void testMultiDayTrip() {
-		Optional<TripResponse> optimalRoute = search.getOptimalRoute(stopRepo.findIdByName("Koln"), stopRepo.findIdByName("Dresden"), Duration.ofHours(6), LocalTime.of(7, 0),
-				Duration.ofMinutes(6));
+		Optional<TripResponse> optimalRoute = search.getOptimalRoute(stopRepo.findIdByName("Koln"),
+				stopRepo.findIdByName("Dresden"), Duration.ofHours(6), LocalTime.of(7, 0), Duration.ofMinutes(6));
 
 		assertTrue(optimalRoute.isPresent());
-//		assertEquals("IC1", optimalRoute.get().routeName());
-//		assertEquals("Koln", optimalRoute.get().stops().get(0).stopName());
-//		assertEquals("2025-06-24T08:00",
-//				optimalRoute.get().stops().get(0).departureTime().toLocalDateTime().toString());
-//		assertEquals("IC4", optimalRoute.get().routeName());
-//		assertEquals("Bremen", optimalRoute.get().stops().get(0).stopName());
-//		assertEquals("2025-06-25T08:00",
-//				optimalRoute.get().stops().get(0).departureTime().toLocalDateTime().toString());
-//		assertEquals("IC5", optimalRoute.get(2).routeName());
-//		assertEquals("Berlin", optimalRoute.get(2).stops().get(0).stopName());
-//		assertEquals("2025-06-25T12:10",
-//				optimalRoute.get(2).stops().get(0).departureTime().toLocalDateTime().toString());
+		TripResponsePart tripResponsePart1 = optimalRoute.get().trips().get(0);
+		assertEquals("IC1", tripResponsePart1.trainName());
+		assertEquals("Koln", tripResponsePart1.departureStationName());
+		assertEquals("2025-06-24T08:00", tripResponsePart1.departureTime().toString());
+		assertEquals("Bremen", tripResponsePart1.arrivalStationName());
+		assertEquals("2025-06-24T12:00", tripResponsePart1.arrivalTime().toString());
+		
+		TripResponsePart tripResponsePart2 = optimalRoute.get().trips().get(1);
+		assertEquals("IC4", tripResponsePart2.trainName());
+		assertEquals("Bremen", tripResponsePart2.departureStationName());
+		assertEquals("2025-06-25T08:00", tripResponsePart2.departureTime().toString());
+		assertEquals("Berlin", tripResponsePart2.arrivalStationName());
+		assertEquals("2025-06-25T12:00", tripResponsePart2.arrivalTime().toString());
+		
+		TripResponsePart tripResponsePart3 = optimalRoute.get().trips().get(2);
+		assertEquals("IC5", tripResponsePart3.trainName());
+		assertEquals("Berlin", tripResponsePart3.departureStationName());
+		assertEquals("2025-06-25T12:10", tripResponsePart3.departureTime().toString());
+		assertEquals("Dresden", tripResponsePart3.arrivalStationName());
+		assertEquals("2025-06-25T13:00", tripResponsePart3.arrivalTime().toString());
 	}
 
 	private int tripId = 1;
