@@ -1,7 +1,3 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 import "@db-ux/core-components/build/styles/rollup.css";
 import { defineCustomElements } from "@db-ux/wc-core-components";
 defineCustomElements();
@@ -21,5 +17,3 @@ document.querySelector('#app').innerHTML = `
     <db-radio name="radio-group" value="2">Radio 2</db-radio>
   </form>
 `
-
-setupCounter(document.querySelector('#counter'))
