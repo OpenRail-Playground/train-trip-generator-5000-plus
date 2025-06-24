@@ -1,0 +1,8 @@
+stop_name,parent_station,stop_id,stop_lat,stop_lon,location_type
+'s-Hertogenbosch,,27766,51.69054,5.293723,1
+'s-Hertogenbosch,27766,332717,51.69054,5.293723,
+Aachen Hbf,226989,115198,50.7678,6.091499,
+Aachen Süd(Gr),,165306,50.731915,6.04541,1
+Aachen Süd(Gr),165306,274109,50.731915,6.04541,
+"Aachen, Hauptbahnhof",,226989,50.767723,6.092051,1
+Aalen Hauptbahnhof,,196806,48.841602,10.096031,1
