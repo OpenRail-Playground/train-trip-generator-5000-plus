@@ -1,5 +1,5 @@
 @import "@db-ux/core-components/build/styles/rollup.css";
-@import "@db-ux/db-theme/build/styles/rollup.css";
+/* @import "@db-ux/db-theme/build/styles/rollup.css"; */
 
 /* You can add global styles to this file, and also import other style files */
 html,
@@ -20,7 +20,19 @@ body {
 	);
 
 	fieldset {
+		padding: 0;
+
 		display: flex;
+		align-items: flex-end;
+		gap: var(--db-spacing-fixed-2xs);
+
+		& ~ db-input .db-input,
+		& ~ db-button .db-button {
+			margin-inline: var(--db-spacing-fixed-2xs);
+			max-inline-size: calc(100% - var(--db-spacing-fixed-2xs) * 2);
+
+			margin-block: var(--db-spacing-fixed-2xs);
+		}
 	}
 }
 
