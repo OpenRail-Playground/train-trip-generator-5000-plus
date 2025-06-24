@@ -13,7 +13,7 @@ public interface StopRepository extends JpaRepository<StopEntity, Long> {
 
     @Query(value = """
                    SELECT * FROM stops
-                  WHERE LOWER(NAME) LIKE LOWER(CONCAT('%', :stationName, '%'))
+                  WHERE LOWER(NAME) LIKE LOWER(CONCAT(:stationName, '%'))
                             AND PARENT_STATION_ID IS NULL
                   ORDER BY NAME ASC
                   LIMIT 10
