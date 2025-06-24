@@ -7,33 +7,33 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1750759759957-1" author="z193022">
         <createTable tableName="routes">
-            <column name="id" type="VARCHAR(255)">
+            <column name="id" type="bigint">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_routeentity"/>
             </column>
-            <column name="agency_id" type="VARCHAR(255)"/>
+            <column name="agency_id" type="bigint"/>
             <column name="route_short_name" type="VARCHAR(255)"/>
             <column name="route_long_name" type="VARCHAR(255)"/>
             <column name="route_desc" type="VARCHAR(255)"/>
-            <column name="route_type" type="VARCHAR(255)"/>
+            <column name="route_type" type="bigint"/>
         </createTable>
     </changeSet>
     <changeSet id="1750759759957-2" author="z193022">
         <createTable tableName="stops">
-            <column name="id" type="VARCHAR(255)">
+            <column name="id" type="bigint">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_stopentity"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
-            <column name="parent_station_id" type="VARCHAR(255)"/>
-            <column name="latitude" type="VARCHAR(255)"/>
-            <column name="longitude" type="VARCHAR(255)"/>
+            <column name="parent_station_id" type="bigint"/>
+            <column name="latitude" type="float"/>
+            <column name="longitude" type="float"/>
         </createTable>
     </changeSet>
     <changeSet id="1750759759957-3" author="z193022">
         <createTable tableName="stop_times">
-            <column name="stop_id" type="VARCHAR(255)"/>
+            <column name="stop_id" type="bigint"/>
             <column name="departure_time" type="TIME"/>
             <column name="arrival_time" type="TIME"/>
-            <column name="trip_id" type="VARCHAR(255)">
+            <column name="trip_id" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="pk_stoptimeentity"/>
             </column>
             <column name="stop_sequence" type="VARCHAR(255)">
@@ -43,13 +43,13 @@
     </changeSet>
     <changeSet id="1750759759957-4" author="z193022">
         <createTable tableName="trips">
-            <column name="id" type="VARCHAR(255)">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" primaryKeyName="pk_tripentity"/>
             </column>
-            <column name="route_id" type="VARCHAR(255)"/>
-            <column name="service_id" type="VARCHAR(255)"/>
+            <column name="route_id" type="bigint"/>
+            <column name="service_id" type="bigint"/>
             <column name="trip_short_name" type="VARCHAR(255)"/>
-            <column name="direction_id" type="VARCHAR(255)"/>
+            <column name="direction_id" type="bigint"/>
         </createTable>
     </changeSet>
 

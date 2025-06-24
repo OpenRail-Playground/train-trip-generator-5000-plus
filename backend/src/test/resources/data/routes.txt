@@ -1,0 +1,11 @@
+route_long_name,route_short_name,agency_id,route_type,route_id
+,EC,1,2,64
+,EC,11,2,54
+,EC,2,2,28
+,EC,4,2,27
+,EC,7,2,13
+,EC,8,2,65
+,EC 27,1,2,58
+,EC 27,5,2,29
+,EC 43,5,2,88
+,EC 43,8,2,5

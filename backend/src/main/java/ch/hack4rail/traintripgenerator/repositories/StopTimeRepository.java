@@ -8,5 +8,5 @@ import ch.hack4rail.traintripgenerator.entities.StopEntity;
 import ch.hack4rail.traintripgenerator.entities.TripEntity;
 
 @Repository
-public interface StopTimeRepository extends JpaRepository<StopTimeEntity, String> {
+public interface StopTimeRepository extends JpaRepository<StopTimeEntity, Long> {
 }

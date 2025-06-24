@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import ch.hack4rail.traintripgenerator.entities.RouteEntity;
 
 @Repository
-public interface RouteRepository extends JpaRepository<RouteEntity, String> {
+public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 }

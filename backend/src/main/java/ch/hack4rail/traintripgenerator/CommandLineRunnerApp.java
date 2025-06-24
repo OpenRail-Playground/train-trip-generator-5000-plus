@@ -38,6 +38,9 @@ public class CommandLineRunnerApp implements CommandLineRunner {
     private final StopTimeRepository stopTimeRepository;
     private final TripRepository tripRepository;
 
+    private final TripEntityMapper tripEntityMapper;
+    private final StopTimeEntityMapper stopTimeEntityMapper;
+
     @Override
     public void run(String... args) throws Exception {
         logger.info("RUN command line runner!");
@@ -53,9 +56,8 @@ public class CommandLineRunnerApp implements CommandLineRunner {
 
         stopRepository.saveAll(stops.stream().map(StopEntityMapper::map).toList());
         routeRepository.saveAll(routes.stream().map(RouteEntityMapper::map).toList());
-        routeRepository.saveAll(routes.stream().map(RouteEntityMapper::map).toList());
-        stopTimeRepository.saveAll(stopTimes.stream().map(StopTimeEntityMapper::map).toList());
-        tripRepository.saveAll(trips.stream().map(TripEntityMapper::map).toList());
+        stopTimeRepository.saveAll(stopTimes.stream().map(stopTimeEntityMapper::map).toList());
+        tripRepository.saveAll(trips.stream().map(tripEntityMapper::map).toList());
 
         logger.info("FINISHED Parsing!");
         logger.info("stops: " + stops.size());

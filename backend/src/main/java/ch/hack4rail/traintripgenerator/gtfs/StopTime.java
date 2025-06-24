@@ -15,13 +15,13 @@ import lombok.Setter;
 public final class StopTime {
 
     @CsvBindByName(column = "stop_id")
-    private String stopId;
+    private long stopId;
 
     @CsvBindByName(column = "stop_sequence")
     private String stopSequence;
 
     @CsvBindByName(column = "trip_id")
-    private String tripId;
+    private long tripId;
 
     @CsvBindByName(column = "departure_time")
     private String departureTime;

@@ -30,13 +30,13 @@ public class GraphSearchService {
 	// TODO get repositories
 	//	private final TripEntityRepository tripRepository;
 
-	public List<TripEntity> getOptimalRoute(String start, String end, Duration maxDayTravelTime,
+	public List<TripEntity> getOptimalRoute(Long start, Long end, Duration maxDayTravelTime,
 			LocalTime startOfTravelDay, Duration minimumConnectionTime) {
 		LocalTime endOfTravelDay = startOfTravelDay.plus(maxDayTravelTime);
 		LocalDate date = LocalDate.now();
 
 		PriorityQueue<Node> queue = new PriorityQueue<>(comparing(Node::getTime));
-		Set<String> visitedStations = new HashSet<>();
+		Set<Long> visitedStations = new HashSet<>();
 		Map<Node, Node> parentMap = new HashMap<>();
 
 		queue.add(new StartingNode(departureTime(date, startOfTravelDay), start));
@@ -62,7 +62,7 @@ public class GraphSearchService {
 					// TODO get stops
 					// n.trip.stops().stream()
 					Stream.<StopTimeEntity>of() //
-							.filter(stop -> n.getStopId().equals(stop.getStopId())) //
+							.filter(stop -> n.getStopId().equals(stop.getStop().getId())) //
 							.filter(stop -> stop.getDepartureTime()
 									.isAfter(n.getTime().toLocalTime().plus(minimumConnectionTime))) //
 							.filter(stop -> stop.getDepartureTime().isBefore(endOfTravelDay)) //
@@ -135,7 +135,7 @@ public class GraphSearchService {
 		StopTimeEntity tripArrival = trimmedStopTimeEntitys.getLast();
 		trimmedStopTimeEntitys.removeLast();
 		trimmedStopTimeEntitys.add(
-				new StopTimeEntity(tripArrival.getId(), tripArrival.getStopId(), tripArrival.getArrivalTime(), null));
+				new StopTimeEntity(tripArrival.getId(), tripArrival.getStop(), tripArrival.getArrivalTime(), null));
 		// TODO change to the REST api object
 		return new TripEntity();
 	}
@@ -176,8 +176,8 @@ public class GraphSearchService {
 			return dateTime;
 		}
 
-		String getStopId() {
-			return stop.getStopId();
+		Long getStopId() {
+			return stop.getStop().getId();
 		}
 
 		@Override
@@ -212,9 +212,9 @@ public class GraphSearchService {
 	private class StartingNode extends Node {
 
 		private LocalDateTime time;
-		private String stopId;
+		private Long stopId;
 
-		public StartingNode(LocalDateTime time, String stopId) {
+		public StartingNode(LocalDateTime time, Long stopId) {
 			super(true, null, null, null);
 			this.time = time;
 			this.stopId = stopId;
@@ -226,7 +226,7 @@ public class GraphSearchService {
 		}
 
 		@Override
-		String getStopId() {
+		Long getStopId() {
 			return stopId;
 		}
 
