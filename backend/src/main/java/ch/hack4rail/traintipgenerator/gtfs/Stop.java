@@ -15,8 +15,19 @@ import lombok.Setter;
 public final class Stop {
 
 
-    @CsvBindByName(column = "stop_id")
-    private String stop_id;
+    @CsvBindByName(column = "stop_id", required = true)
+    private String id;
 
+    @CsvBindByName(column = "stop_name")
+    private String name;
+
+    @CsvBindByName(column = "parent_station")
+    private String parentStationId;
+
+    @CsvBindByName(column = "stop_lat")
+    private String latitude;
+
+    @CsvBindByName(column = "stop_lon")
+    private String longitude;
 
 }

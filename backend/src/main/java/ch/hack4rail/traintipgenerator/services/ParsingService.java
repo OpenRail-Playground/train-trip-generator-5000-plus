@@ -12,8 +12,10 @@ import org.springframework.util.ResourceUtils;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -22,23 +24,26 @@ public class ParsingService {
 
 
     final public <K> List<K> parseCSV(String fileName, Class<K> clazz) throws IOException {
+        val path = ResourceUtils.getFile("classpath:data/" + fileName);
+        try (InputStream stream = new FileInputStream(path)) {
 
-        val stream = new FileInputStream(ResourceUtils.getFile("classpath:data/" + fileName));
+            byte[] bom = new byte[3];
+            int n = stream.read(bom, 0, bom.length);
 
-        try (Reader reader = new BufferedReader(new InputStreamReader(stream))) {
-            // creating the strategy object
+            Reader reader;
+            if (n == 3 && (bom[0] & 0xFF) == 0xEF && (bom[1] & 0xFF) == 0xBB && (bom[2] & 0xFF) == 0xBF) {
+                reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+            } else {
+                reader = new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8);
+            }
+
             HeaderColumnNameMappingStrategy<K> strategy = new HeaderColumnNameMappingStrategy<>();
-            // setting the format of the data representation in the header
             strategy.setType(clazz);
-            // Creating instance of CSVTOBEAN class responsable of the mapping
             CsvToBean<K> csvToBean = new CsvToBeanBuilder<K>(reader)
-                    // Setting the startegy
                     .withMappingStrategy(strategy)
-                    // Ignore empty lines and leading spaces
                     .withIgnoreEmptyLine(true)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
-            // parse the data into the Objects with type T
             return csvToBean.parse();
         }
     }

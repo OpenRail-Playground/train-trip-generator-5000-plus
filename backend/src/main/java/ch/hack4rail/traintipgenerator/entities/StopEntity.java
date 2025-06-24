@@ -10,5 +10,12 @@ public class StopEntity {
     @Id
     private String id;
 
+    private String name;
+
+    private String parentStationId;
+
+    private String latitude;
+
+    private String longitude;
 
 }

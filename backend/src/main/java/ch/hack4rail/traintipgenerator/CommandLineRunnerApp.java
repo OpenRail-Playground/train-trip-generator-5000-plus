@@ -1,6 +1,9 @@
 package ch.hack4rail.traintipgenerator;
 
+import ch.hack4rail.traintipgenerator.gtfs.Route;
 import ch.hack4rail.traintipgenerator.gtfs.Stop;
+import ch.hack4rail.traintipgenerator.gtfs.StopTimes;
+import ch.hack4rail.traintipgenerator.gtfs.Trip;
 import ch.hack4rail.traintipgenerator.services.ParsingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -17,10 +20,12 @@ public class CommandLineRunnerApp implements CommandLineRunner {
         System.out.println("RUN command line runner!");
 
         var stops = parsingService.parseCSV("stops.txt", Stop.class);
-        var routes = parsingService.parseCSV("routes.txt", Stop.class);
-        var trips = parsingService.parseCSV("trips.txt", Stop.class);
+        var stopTimes = parsingService.parseCSV("stop_times.txt", StopTimes.class);
+        var routes = parsingService.parseCSV("routes.txt", Route.class);
+        var trips = parsingService.parseCSV("trips.txt", Trip.class);
 
         System.out.println("stops: " + stops.size());
+        System.out.println("times: " + stopTimes.size());
         System.out.println("routes: " + routes.size());
         System.out.println("trips: " + trips.size());
     }
