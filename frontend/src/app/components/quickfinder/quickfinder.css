@@ -1,14 +1,4 @@
 .quickfinder {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 20px;
-	/* vertical align to the middle */
-	justify-content: center;
-
-	min-height: calc(
-		100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px
-	);
 
 	fieldset {
 		padding: 0;

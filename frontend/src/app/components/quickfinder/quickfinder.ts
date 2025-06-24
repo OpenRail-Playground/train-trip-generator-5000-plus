@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-	selector: 'app-root',
+	selector: 'app-quick-finder',
 	imports: [DBButton, DBInput, DBCard, FormsModule],
 	standalone: true,
-	templateUrl: './home.html',
-	styleUrl: './home.css',
+	templateUrl: './quickfinder.html',
+	styleUrl: './quickfinder.css',
 })
-export class HomeComponent {
+export class QuickfinderComponent {
 	private router = inject(Router);
 
 	public onSubmit() {
