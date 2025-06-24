@@ -32,9 +32,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GraphSearchService {
 
-	private StopTimeRepository stopTimeRepository;
-	private StopRepository stopRepository;
-	private TripRepository tripRepository;
+	private final StopTimeRepository stopTimeRepository;
+	private final StopRepository stopRepository;
+	private final TripRepository tripRepository;
 
 	public Optional<TripResponse> getOptimalRoute(Long startStopParentId, Long endStopParentId, Duration maxDayTravelTime,
 			LocalTime startOfTravelDay, Duration minimumConnectionTime) {
@@ -95,7 +95,8 @@ public class GraphSearchService {
 		List<Node> nextNodes = new ArrayList<>();
 		List<StopTimeEntity> stopTimes = stopTimeRepository.findByStopParentStationId(n.getParentStopId());
 		for (StopTimeEntity stopTime : stopTimes) {
-			if (stopTime.getId().getTripId() == n.getStopTimeEntity().getId().getTripId()) {
+			if (n.getStopTimeEntity() != null 
+					&& stopTime.getId().getTripId() == n.getStopTimeEntity().getId().getTripId()) {
 				continue;
 			}
 			if (stopTime.getDepartureTime() == null 
@@ -163,8 +164,8 @@ public class GraphSearchService {
 		public Node(boolean arrival, StopTimeEntity stop, LocalDate date) {
 			this.arrival = arrival;
 			this.stop = stop;
-			this.dateTime = LocalDateTime.of(date, arrival ? stop.getArrivalTime() : stop.getDepartureTime());
-			this.parentStopId = stop.getStop().getParentStationId();
+			this.dateTime = stop == null ? null : LocalDateTime.of(date, arrival ? stop.getArrivalTime() : stop.getDepartureTime());
+			this.parentStopId = stop == null ? null : stop.getStop().getParentStationId();
 		}
 
 		boolean isArrival() {
