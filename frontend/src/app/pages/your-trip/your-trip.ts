@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewEncapsulation} from '@angular/core';
 
 import {DBIcon, DBCard, DBButton} from '@db-ux/ngx-core-components';
 import {TrainMapComponent} from '../../components/train-map/train-map';
@@ -16,6 +16,7 @@ import { TripWithTransfer } from '../../models/trip-with-transfer';
 	standalone: true,
 	templateUrl: './your-trip.html',
 	styleUrl: './your-trip.css',
+	encapsulation: ViewEncapsulation.None,
 })
 export class YourTripComponent {
 

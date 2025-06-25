@@ -8,6 +8,11 @@ body {
 	block-size: 100vh;
 }
 
-body {
+body:has(main.home) {
 	background-color: var(--db-adaptive-bg-basic-level-2-default);
+}
+
+.db-header {
+	position: fixed;
+	inline-size: 100vw;
 }

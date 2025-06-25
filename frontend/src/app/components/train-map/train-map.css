@@ -1,4 +1,8 @@
 .map-container {
 	height: 100vh;
 	width: 100%;
+
+	position: fixed;
+	top: 73px;
+	block-size: calc(100vh - 103px);
 }

@@ -7,12 +7,12 @@
 			@let first = tripsWithTransfer[0];
 			@let last = tripsWithTransfer[tripsWithTransfer.length - 1];
 
-			<p class="travel">
-				<strong>{{ first.trip.departureStationName }}
+			<article class="travel" data-mode="dark">
+				<h3>{{ first.trip.departureStationName }}
 					<db-icon icon="arrow_right">to</db-icon>
-					{{ last.trip.arrivalStationName }}</strong>
+					{{ last.trip.arrivalStationName }}</h3>
 				{{ nrOfDays }}-day trip starting on {{ first.trip.departureTime | date : 'MMM d, y, HH:mm'  }}
-			</p>
+			</article>
 			@for (tripWithTransfer of tripsWithTransfer; track tripWithTransfer.trip.trainName) {
 				<db-card>
 					<dl>
