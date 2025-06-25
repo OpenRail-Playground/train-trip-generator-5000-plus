@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output, ViewEncapsulation} from '@angular/core';
 
 import {DBButton, DBCard, DBInput} from '@db-ux/ngx-core-components';
 import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -15,6 +15,7 @@ import {TripRequest} from '../../models/trip-request';
 	standalone: true,
 	templateUrl: './quick-finder.html',
 	styleUrl: './quick-finder.css',
+	encapsulation: ViewEncapsulation.None,
 })
 export class QuickFinderComponent {
 	private router = inject(Router);

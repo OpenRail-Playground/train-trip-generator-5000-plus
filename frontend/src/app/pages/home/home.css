@@ -9,4 +9,9 @@
 	min-height: calc(
 		100vh - var(--db-sizing-md) + var(--db-spacing-fixed-xs) * 2 - 70px
 	);
+
+	h1, p {
+		max-inline-size: 640px;
+		text-align: center;
+	}
 }

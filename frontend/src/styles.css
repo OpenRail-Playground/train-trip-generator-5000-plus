@@ -7,3 +7,7 @@ body {
 	inline-size: 100vw;
 	block-size: 100vh;
 }
+
+body {
+	background-color: var(--db-adaptive-bg-basic-level-2-default);
+}
