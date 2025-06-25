@@ -28,9 +28,11 @@ import ch.hack4rail.traintripgenerator.repositories.TripRepository;
 import ch.hack4rail.traintripgenerator.response.TripResponse;
 import ch.hack4rail.traintripgenerator.response.TripResponsePart;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GraphSearchService {
 
 	private final StopTimeRepository stopTimeRepository;
@@ -39,6 +41,7 @@ public class GraphSearchService {
 
 	public Optional<TripResponse> getOptimalRoute(Long startStopParentId, Long endStopParentId,
 			Duration maxDayTravelTime, LocalTime startOfTravelDay, Duration minimumConnectionTime) {
+		log.info("Received request to go from {} to {} with maxDayTravelTime of {}", startStopParentId, endStopParentId, maxDayTravelTime);
 		LocalTime endOfTravelDay = startOfTravelDay.plus(maxDayTravelTime);
 		LocalDate date = LocalDate.now();
 
@@ -51,6 +54,7 @@ public class GraphSearchService {
 		while (!queue.isEmpty()) {
 			Node n = queue.poll();
 			if (n.isArrival() && endStopParentId.equals(n.getParentStopId())) {
+				log.info("Found a response in {} steps", parentMap.size());
 				return getTripResponse(parentMap, n);
 			}
 			if (n.isArrival()) {

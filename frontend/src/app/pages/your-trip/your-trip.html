@@ -1,43 +1,46 @@
 <main class="your-trip">
-	@if (result) {
+	@if (tripsWithTransfer) {
 
 		<section>
 			<h1>Your trip</h1>
 
-			@let first = result.trips[0];
-			@let last = result.trips[result.trips.length - 1];
-
+			@let first = tripsWithTransfer[0];
+			@let last = tripsWithTransfer[tripsWithTransfer.length - 1];
 
 			<p class="travel">
-				<strong>{{ first.departureStationName }}
+				<strong>{{ first.trip.departureStationName }}
 					<db-icon icon="arrow_right">to</db-icon>
-					{{ last.arrivalStationName }}</strong>
-<!--				3-day trip starting on 24 Jun 2025 at 09:21-->
+					{{ last.trip.arrivalStationName }}</strong>
+				{{ nrOfDays }}-day trip starting on {{ first.trip.departureTime | date : 'MMM d, y, HH:mm'  }}
 			</p>
-<!--			<p class="stop" data-color="green">-->
-<!--				<db-icon icon="start"></db-icon>-->
-<!--				Stockholm-->
-<!--			</p>-->
-			<p class="time">24 Jun 2025 - 09:21</p>
-
-			@for (resultPart of result?.trips; track resultPart.trainName) {
+			@for (tripWithTransfer of tripsWithTransfer; track tripWithTransfer.trip.trainName) {
 				<db-card>
 					<dl>
-						<dt>{{ resultPart.departureTime | date : 'hh:mm' }}</dt>
-						<dd>{{ resultPart.departureStationName }}</dd>
-						<dt>{{ resultPart.arrivalTime | date : 'hh:mm' }}</dt>
-						<dd>{{ resultPart.arrivalStationName }}</dd>
+						<dt>{{ tripWithTransfer.trip.departureTime | date : 'HH:mm' }}</dt>
+						<dd>{{ tripWithTransfer.trip.departureStationName }}</dd>
+						<dt>{{ tripWithTransfer.trip.arrivalTime | date : 'HH:mm' }}</dt>
+						<dd>{{ tripWithTransfer.trip.arrivalStationName }}</dd>
+						<dd>{{ tripWithTransfer.trip.trainName }}</dd>
 					</dl>
 				</db-card>
+				@if (tripWithTransfer.transfer && tripWithTransfer.transfer.isNight) {
+					<db-card data-color="blue" class="stop">
+						<db-icon icon="moon"></db-icon>
+						{{ tripWithTransfer.trip.arrivalStationName }}
+					</db-card>
+				}
+				@if (tripWithTransfer.transfer && !tripWithTransfer.transfer.isNight) {
+					<db-card>
+						<db-icon icon="pedestrian"></db-icon>
+						Tranfer
+					</db-card>
+				}
 			}
-
-
-
 
 			<db-button type="button" variant="brand" width="full">Book the trip</db-button>
 		</section>
 		<aside>
-			<app-train-map [tripResponse]="result"></app-train-map>
+			<app-train-map [tripResponse]="response"></app-train-map>
 		</aside>
 	} @else {
 		<div>loading...</div>
